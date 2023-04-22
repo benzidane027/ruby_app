@@ -1,0 +1,16 @@
+class User < ApplicationRecord
+  attribute :is_active, :boolean, default: true
+  attribute :is_staff, :boolean, default: false
+
+  has_secure_password
+  validates :email, email_format: { message: 'Invalid format' }
+  validates_uniqueness_of :email, on: [:create], message: 'must be unique'
+  validates_length_of :fname, :lname, in: 3..20, message: 'must be more 3 chracter'
+  validates_length_of :phone, is: 10, message: 'must be  10 diget', allow_blank: true
+  validates_length_of :address, in: 3..100, message: 'is invalid', allow_blank: true
+  validates_numericality_of :phone, only_integer: true, message: 'must be integer', allow_blank: true
+
+  def as_json(options = {})
+    super(options.merge({ except: %i[password_digest is_active is_staff created_at updated_at] }))
+  end
+end

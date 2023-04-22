@@ -1,0 +1,2 @@
+class ActiveRefresToken < ApplicationRecord
+end
