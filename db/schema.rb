@@ -10,11 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_22_173233) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_23_145928) do
   create_table "active_refres_tokens", force: :cascade do |t|
     t.string "token"
     t.string "user_id"
     t.string "device_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "complaints", force: :cascade do |t|
+    t.string "description"
+    t.string "address"
+    t.string "comp_type"
+    t.string "state"
+    t.string "picture"
+    t.boolean "is_seen"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,6 +1,6 @@
 require 'json'
 class AuthController < ApplicationController
-  def login
+  def log_in
     user = User.find_by(email: params[:email].to_s).try(:authenticate, params[:password].to_s)
     if user
       access_token = ApplicationController.encode_token user_id: user.id, type: :access
@@ -16,12 +16,30 @@ class AuthController < ApplicationController
     end
   end
 
+  def sing_up
+    user = User.new(
+      fname: params[:f_name].to_s,
+      lname: params[:l_name].to_s,
+      email: params[:email].to_s,
+      password: params[:password].to_s,
+      password_confirmation: params[:password].to_s,
+      phone: params[:phone].to_s,
+      address: params[:address].to_s
+    )
+    if user.validate
+      user.save
+      render json: { data: :good }, status: 201
+    else
+      render json: { data: :bad, errors: user.errors }, status: 400
+    end
+  end
+
   def token_refresh
     token = ApplicationController.decode_token(params[:refresh].to_s) ## check validity
-    return render json: { data: 'invalid token ' }, status: 400 if token[:code] == :bad
+    return render json: { data: 'invalid token' }, status: 400 if token[:code] == :bad
 
     register = ActiveRefresToken.find_by(token: params[:refresh].to_s) ## check availibility
-    return render json: { data: 'invalid token ' }, status: 404 unless register
+    return render json: { data: 'invalid token' }, status: 404 unless register
 
     user_id = register.user_id
     user_object = User.find_by(id: user_id)
@@ -33,21 +51,19 @@ class AuthController < ApplicationController
     render json: { data: '' }
   end
 
-  def logout
+  def log_out
     decoded_access = ApplicationController.decode_token(request.headers['Authorization'].to_s.split[1])
     decoded_refresh = ApplicationController.decode_token(params['refresh'].to_s)
 
-    return render json: { data: :bad01 }, status: 400 if decoded_access[:code] == :bad
-    return render json: { data: :bad02 }, status: 400 if decoded_refresh[:code] == :bad
+    return render json: { data: :bad01 }, status: 400 if decoded_access[:code] == :bad ## check validity
+    return render json: { data: :bad02 }, status: 400 if decoded_refresh[:code] == :bad ## check validity
+    unless decoded_access[:data][0]['user_id'].to_s == decoded_access[:data][0]['user_id'].to_s
+      return render json: { data: :bad04 }, status: 400 ## check compatibility
+    end
 
-    puts "\n*************************\n"
-    puts decoded_access[:data]
-    # puts decoded_access
-    puts "\n*************************\n"
     register = ActiveRefresToken.find_by(token: params['refresh'].to_s) ## check availibility
-    return render json: { data: :bad04 }, status: 404 unless register
+    return render json: { data: :bad05 }, status: 404 unless register
 
-    # register.delete
     render json: { data: :good }, status: 200
   end
 end
