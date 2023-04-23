@@ -4,13 +4,14 @@ class AuthController < ApplicationController
     if user
       access_token = ApplicationController.encode_token user_id: user.id, type: :access
       refresh_token = ApplicationController.encode_token user_id: user.id, type: :refresh
-      render json: { user: user, accessToken: access_token[:data], refreshToken: refresh_token[:data] }, status: '200'
+      render json: { user: user, tokens: { access: access_token[:data], refresh: refresh_token[:data] } },
+             status: '200'
     else
       render json: {}, status: 404
     end
   end
 
-  def login_from_token
+  def token_refresh
     token = '' # ApplicationController.decode_token user_token
     puts "\n********************\n"
     puts request.headers['Authorization']

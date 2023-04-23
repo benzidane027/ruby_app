@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
+  ##### user endpoint ###########################
+  post '/user/login' => 'auth#login'
+  post '/user/token-refresh' => 'auth#token_refresh'
+  # post '/user/google-auth' => 'auth#google-auth'
+  # post 'user/logout/'=> 'auth#logout'
+  ###############################################
 
-  post '/auth/login' => 'auth#login'
-  post '/auth/login_from_token' => 'auth#login_from_token'
+  ##### complaints ##############################
 
+  ###############################################
   # root to: 'main#home'
   get '/' => 'main#home'
 end
