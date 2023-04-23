@@ -13,4 +13,8 @@ class User < ApplicationRecord
   def as_json(options = {})
     super(options.merge({ except: %i[password_digest is_active is_staff created_at updated_at] }))
   end
+
+  def to_h
+    Hash({ f_name: fname, l_name: lname, email: email, phone: phone, address: address })
+  end
 end
