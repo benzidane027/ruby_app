@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'json'
 
 class AuthMidleWare
@@ -6,14 +7,17 @@ class AuthMidleWare
   end
 
   def call(env)
-    puts 'before  '
     # ORIGINAL_FULLPATH
+    # REQUEST_URI
+    # REQUEST_PATH
     # REQUEST_METHOD
     # HTTP_AUTHORIZATION
-    # puts JSON.pretty_generate(env)
+
+    if ['/user/complaints'].find_index(env['REQUEST_PATH'])
+      token = ApplicationController.decode_token(env['HTTP_AUTHORIZATION'].to_s.split[1])
+      return [401, { 'Content-Type' => 'application/json' }, [{ 'data' => '' }.to_json]] if token[:code] == :bad
+    end
     status, headers, response = @app.call(env)
-    #puts response
-    puts 'after  '
     [status, headers, response]
   end
 end

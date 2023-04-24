@@ -12,7 +12,7 @@ class User < ApplicationRecord
   validates_length_of :address, in: 3..100, message: 'is invalid', allow_blank: true
   validates_length_of :password, on: :create, in: 5..30, message: 'is invalid'
   validates_numericality_of :phone, only_integer: true, message: 'must be integer', allow_blank: true
-
+  
   def as_json(options = {})
     super(options.merge({ except: %i[password_digest is_active is_staff created_at updated_at] }))
   end

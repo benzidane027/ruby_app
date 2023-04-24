@@ -10,7 +10,13 @@ Rails.application.routes.draw do
 
   ##### complaints ##############################
 
+  post 'user/complaints' => 'comp#add'
+  get 'user/complaints' => 'comp#get'
   ###############################################
+
+  #### home page ################################
+
   # root to: 'main#home'
-  get '/' => 'main#home'
+  get '/' => 'main#index'
+  ###############################################
 end
