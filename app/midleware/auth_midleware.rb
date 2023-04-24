@@ -12,7 +12,7 @@ class AuthMidleWare
     # HTTP_AUTHORIZATION
     # puts JSON.pretty_generate(env)
     status, headers, response = @app.call(env)
-    puts response
+    #puts response
     puts 'after  '
     [status, headers, response]
   end

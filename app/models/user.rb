@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :complaints
+  has_many :complaints, class_name: 'Complaint', autosave: true
 
   attribute :is_active, :boolean, default: true
   attribute :is_staff, :boolean, default: false
@@ -10,7 +10,7 @@ class User < ApplicationRecord
   validates_length_of :fname, :lname, in: 3..20, message: 'must be more 3 chracter'
   validates_length_of :phone, is: 10, message: 'must be  10 diget', allow_blank: true
   validates_length_of :address, in: 3..100, message: 'is invalid', allow_blank: true
-  validates_length_of :password, in: 5..30, message: 'is invalid'
+  validates_length_of :password, on: :create, in: 5..30, message: 'is invalid'
   validates_numericality_of :phone, only_integer: true, message: 'must be integer', allow_blank: true
 
   def as_json(options = {})

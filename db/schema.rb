@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_23_145928) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_24_012546) do
   create_table "active_refres_tokens", force: :cascade do |t|
     t.string "token"
     t.string "user_id"
@@ -28,6 +28,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_23_145928) do
     t.boolean "is_seen"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_complaints_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
