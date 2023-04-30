@@ -17,6 +17,6 @@ Rails.application.routes.draw do
   #### home page ################################
 
   # root to: 'main#home'
-  get '/' => 'main#index'
+  post '/' => 'main#index'
   ###############################################
 end

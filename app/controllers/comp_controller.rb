@@ -12,7 +12,7 @@ class CompController < ApplicationController
       complaint.save!
       return render json: {}, status: 200
     end
-    render json: {}, status: 400
+    render json: complaint.to_json, status: 400
   end
 
   def get
