@@ -26,7 +26,7 @@ class Complaint < ApplicationRecord
             attached: true,
             content_type: ['image/png', 'image/jpg', 'image/jpeg'],
             processable_image: true,
-            size: { between: 1.kilobyte..8.megabytes , message: 'is not given between size' }
+            size: { between: 1.kilobyte..8.megabytes , message: 'is not given between size ' }
   # validates :users_id, presence: true
   # comp_type
 end
