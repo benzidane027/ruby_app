@@ -13,7 +13,7 @@ TYPES = %w[
 
 class Complaint < ApplicationRecord
   belongs_to :users_id, class_name: 'User', optional: true
-  has_one_attached :picture
+  has_one_attached :picture, dependent: :destroy
 
   attribute :is_seen, :boolean, default: false
   attribute :state, :string, default: 'in_progress'
@@ -26,7 +26,16 @@ class Complaint < ApplicationRecord
             attached: true,
             content_type: ['image/png', 'image/jpg', 'image/jpeg'],
             processable_image: true,
-            size: { between: 1.kilobyte..8.megabytes , message: 'is not given between size ' }
+            size: { between: 1.kilobyte..8.megabytes, message: 'is not given between size ' },
+            allow_blank: true
+  def process_attachment
+    puts "\n\n\n#####################"
+    pdf_attachment_path = Rails.root.to_s + "/storage/#{picture.filename}"
+    File.open(pdf_attachment_path, 'wb') do |file|
+      file.write(pdf_attachment.download)
+    end
+    puts "#####################\n\n\n"
+  end
   # validates :users_id, presence: true
   # comp_type
 end

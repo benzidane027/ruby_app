@@ -2,6 +2,7 @@ class MainController < ApplicationController
   def index
     puts '********* this is params *************'
     # comp = Complaint.find_by(id: 1)
+    #render json: { data:  url_for(comp.picture) }, status: 200
 
     comp = Complaint.new(
       picture: params[:picture],
