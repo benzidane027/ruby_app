@@ -18,7 +18,15 @@ class CompController < ApplicationController
 
   def get
     user_id = ApplicationController.decode_token(request.headers['Authorization'].to_s.split[1])[:data][0]['user_id']
-    @user = User.find_by_id(user_id)
-    render json: { data: @user.complaints.as_json(include: :picture) }, status: 200
+    @Complaints = Complaint.where(user_id: user_id.to_s)
+    render json: { data: @Complaints.map do |comp|
+      if comp.picture.attached?
+        comp.as_json.merge(
+          picture_path: url_for(comp.picture)
+        )
+      else
+        comp.as_json
+      end
+    end }, status: 200
   end
 end
