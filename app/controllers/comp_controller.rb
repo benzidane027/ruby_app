@@ -22,10 +22,10 @@ class CompController < ApplicationController
     render json: { data: @Complaints.map do |comp|
       if comp.picture.attached?
         comp.as_json.merge(
-          picture_path: url_for(comp.picture)
+          picture: url_for(comp.picture)
         )
       else
-        comp.as_json
+        comp.as_json.merge(picture: "null")
       end
     end }, status: 200
   end
