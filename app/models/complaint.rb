@@ -28,22 +28,22 @@ class Complaint < ApplicationRecord
             processable_image: true,
             size: { between: 1.kilobyte..8.megabytes, message: 'is not given between size ' },
             allow_blank: true
-  # def as_json(_options = {})
-  #   puts '************************'
-  #   puts Rails.application.routes.url_helpers.rails_blob_path(picture, only_path: false)
-  #   puts '************************'
-  #   Hash({
-  #          "id": id,
-  #          "description": description,
-  #          "address": address,
-  #          "comp_type": comp_type,
-  #          "state": state,
-  #          "is_seen": is_seen,
-  #          "created_at": created_at,
-  #          "updated_at": updated_at,
-  #          "user_id": user_id
-  #        })
-  # end
+  def as_json(_options = {})
+    image_Url = picture.attached? ? Rails.application.routes.url_helpers.url_for(picture) : 'null'
+
+    Hash({
+           "id": id,
+           "description": description,
+           "address": address,
+           "comp_type": comp_type,
+           "state": state,
+           "is_seen": is_seen,
+           "created_at": created_at,
+           "updated_at": updated_at,
+           "user_id": user_id,
+           "picture": image_Url
+         })
+  end
 
   # def process_attachment
   #   puts "\n\n\n#####################"
