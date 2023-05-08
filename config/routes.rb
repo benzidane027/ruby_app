@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   # root to: 'main#home'
   post '/' => 'main#index'
   ###############################################
+  default_url_options host: 'http://localhost:3000'
 end
