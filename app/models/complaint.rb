@@ -29,7 +29,7 @@ class Complaint < ApplicationRecord
             size: { between: 1.kilobyte..8.megabytes, message: 'is not given between size ' },
             allow_blank: true
   def as_json(_options = {})
-    image_Url = picture.attached? ? Rails.application.routes.url_helpers.url_for(picture) : 'null'
+    image_Url = picture.attached? ? Rails.application.routes.url_helpers.rails_blob_url(picture) : 'null'
 
     Hash({
            "id": id,
@@ -55,4 +55,22 @@ class Complaint < ApplicationRecord
   # end
   # validates :users_id, presence: true
   # comp_type
+
+  # Attach method from ActiveStorage
+  # def attach(file) # method  attaching in the model
+  #   blob_key = "testing/filename-#{Time.now}.jpej"
+  #   blob = ActiveStorage::Blob.find_by(key: blob_key.to_s)
+  #   return if blob
+
+  #   blob = ActiveStorage::Blob.new.tap do |blob|
+  #     blob.filename = blob_key.to_s
+  #     blob.key = blob_key
+  #     # blob.byte_size = 123123
+  #     # blob.checksum = Time.new.strftime("%Y%m%d-") + Faker::Alphanumeric.alpha(6)
+  #     blob.upload File.open(file)
+  #     blob.save!
+  #   end
+  # end
+  # self.picture.attach blob
+
 end

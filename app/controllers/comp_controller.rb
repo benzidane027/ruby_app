@@ -18,7 +18,7 @@ class CompController < ApplicationController
 
   def get
     user_id = ApplicationController.decode_token(request.headers['Authorization'].to_s.split[1])[:data][0]['user_id']
-    @Complaints = Complaint.where(user_id: user_id.to_s)
-    render json: { data: @Complaints.as_json }, status: 200
+    @complaints = Complaint.where(user_id: user_id.to_s)
+    render json: { data: @complaints.as_json }, status: 200
   end
 end
