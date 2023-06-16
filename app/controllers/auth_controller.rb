@@ -18,8 +18,8 @@ class AuthController < ApplicationController
 
   def sing_up
     user = User.new(
-      fname: params[:f_name].to_s,
-      lname: params[:l_name].to_s,
+      fname: params[:fname].to_s,
+      lname: params[:lname].to_s,
       email: params[:email].to_s,
       password: params[:password].to_s,
       password_confirmation: params[:password].to_s,

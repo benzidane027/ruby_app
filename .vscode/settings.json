@@ -1,4 +1,11 @@
 {
     "sqltools.useNodeRuntime": true,
-    "sqltools.connections": []
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "database": "${workspaceFolder:learn-ruby}/db/development.sqlite3",
+            "name": "CONN"
+        }
+    ]
 }
