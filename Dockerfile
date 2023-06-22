@@ -2,8 +2,8 @@ FROM ruby:3.0.5-alpine
 
 RUN apk add --update --virtual \
     runtime-deps \
-    postgresql-client \ 
-    build-base \ 
+    postgresql-client \
+    build-base \
     libxml2-dev \
     libxslt-dev \
     nodejs \
@@ -24,6 +24,7 @@ WORKDIR /app
 COPY . /app/
 ENV BUNDLE_PATH = /gems
 RUN yarn install
+RUN gem install bundler:2.4.12
 RUN bundle install
 RUN bundle exec rake db:migrate
 
