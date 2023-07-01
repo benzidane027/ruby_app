@@ -20,6 +20,7 @@ RUN apk add --update --virtual \
     git \
     tzdata  \
     && rm -rf /var/cache/apk/*
+    
 WORKDIR /app
 COPY . /app/
 ENV BUNDLE_PATH = /gems
