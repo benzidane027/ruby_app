@@ -1,5 +1,5 @@
 class MainController < ApplicationController
-  def index
+  def home
     #puts '********* this is params *************'
     # comp = Complaint.find_by(id: 1)
     #render json: { data:  url_for(comp.picture) }, status: 200
@@ -21,6 +21,7 @@ class MainController < ApplicationController
     # end
 
     # puts '********* end  of params *************'
-    render json: { data: "good" }, status: 200
+    # render json: { data: "good" }, status: 200
+
   end
 end

@@ -61,7 +61,7 @@ class AuthController < ApplicationController
       return render json: { data: :bad04 }, status: 400 ## check compatibility
     end
 
-    register = ActiveRefresToken.find_by(token: params['refresh'].to_s) ## check availibility
+    regirenderster = ActiveRefresToken.find_by(token: params['refresh'].to_s) ## check availibility
     return render json: { data: :bad05 }, status: 404 unless register
 
     render json: { data: :good }, status: 200

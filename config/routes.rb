@@ -16,8 +16,8 @@ Rails.application.routes.draw do
 
   #### home page ################################
 
-  # root to: 'main#home'
-  post '/' => 'main#index'
+  #root to: 'main#home'
+  get '/' => 'main#home'
   ###############################################
   default_url_options host: 'http://localhost:3000'
 end
