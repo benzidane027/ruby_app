@@ -5,6 +5,7 @@ services:
   #   ports:
   #     - "6379:6379"
   api:
+    container_name: myrails
     build: .
     ports:
       - "3000:3000"
