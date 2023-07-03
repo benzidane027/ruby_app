@@ -9,6 +9,8 @@ class AlertsChannel < ApplicationCable::Channel
   end
 
   def receive(data)
-    ActionCable.server.broadcast("messages", { "hello" => "hi hi" })
+    puts "this is data -----------------\n"
+    puts data
+    #ActionCable.server.broadcast("messages", { "hello" => "hi hi" })
   end
 end
