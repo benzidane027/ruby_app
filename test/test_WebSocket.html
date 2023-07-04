@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var so = new WebSocket("ws://localhost:3000/cable");
+
+      so.onopen = function (ev) {
+        const msg = {
+          command: "subscribe",
+          identifier: JSON.stringify({ channel: "AlertsChannel", data: "hel" }),
+        };
+        so.send(JSON.stringify(msg));
+
+        //**************************
+        var s = {
+          command: "message",
+          identifier: JSON.stringify({ channel: "AlertsChannel" }),
+          data: JSON.stringify({
+            correspondent: "user01",
+            action: "receivfy",
+          }),
+        };
+        const msg2 = {
+          command: "message",
+          identifier: JSON.stringify({ channel: "AlertsChannel" }),
+          data: JSON.stringify({
+            user_id: 1,
+            message: "Hello world!",
+          }),
+        };
+
+        so.send(JSON.stringify(s));
+      };
+      so.onmessage = function (event) {
+        // console.log("************");
+        // console.log(msg);
+        // console.log("************");
+      };
+      so.onclose = function (ev) {};
+    </script>
+  </body>
+</html>
