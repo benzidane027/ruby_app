@@ -56,6 +56,8 @@ Rails.application.configure do
   config.action_cable.url = "ws://localhost:3000/cable"
   config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/, /file:\/\/*/, "file://", nil]
   config.web_socket_server_url = "ws://localhost:3000/cable"
+  config.action_cable.disable_request_forgery_protection = true
+
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 
