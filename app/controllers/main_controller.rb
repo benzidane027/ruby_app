@@ -21,7 +21,10 @@ class MainController < ApplicationController
     # end
 
     # puts '********* end  of params *************'
-    # render json: { data: "good" }, status: 200
-
+    respond_to do |format|
+      #format.xml { render(xml: "fdsfds") }
+      format.html { render(html: "<b>hello</b>".html_safe) }
+      format.json { render(json: { data: "hello" }) }
+    end
   end
 end

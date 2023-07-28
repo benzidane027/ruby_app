@@ -1,6 +1,6 @@
 class AlertsChannel < ApplicationCable::Channel
   def subscribed
-    stream_from "hello_test"
+    stream_from "messages"
     #ActionCable.server.broadcast("messages", { "hello" => "hi hi" })
     puts "**** welcome ****"
   end
@@ -12,12 +12,12 @@ class AlertsChannel < ApplicationCable::Channel
   def receive(data)
     puts "this is data -----------------\n"
     puts data
-    #ActionCable.server.broadcast("messages", { "hello" => "hi hi" })
+    ActionCable.server.broadcast("messages", { "data" => "hi hi" })
   end
 
-  def speack(data)
-    puts "this is data -----------------\n"
-    puts data
-    #ActionCable.server.broadcast("messages", { "hello" => "hi hi" })
-  end
+  # def speack(data)
+  #   puts "this is data -----------------\n"
+  #   puts data
+  #   #ActionCable.server.broadcast("messages", { "hello" => "hi hi" })
+  # end
 end

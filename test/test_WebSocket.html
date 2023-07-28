@@ -13,24 +13,22 @@
       so.onopen = function (ev) {
         var subscribing = {
           command: "subscribe",
-          identifier: JSON.stringify({ channel: "AlertsChannel", id: 1 }),
+          identifier: JSON.stringify({ channel: "AlertsChannel" }),
         };
-
-        so.send(JSON.stringify(subscribing));
+        const msg = {
+            "command":"message",
+            "identifier": JSON.stringify({channel: 'AlertsChannel'}),
+            "data":JSON.stringify({message:'hello-server',action:'receive'})};
+         
+        so.send(JSON.stringify(subscribing)); //subscribe to channel
+        so.send(JSON.stringify(msg));
       };
 
       so.onmessage = function (event) {
         const data = JSON.parse(event.data);
-        if (data.type == "confirm_subscription") {
-          const msg = {
-            "command":"message",
-            "identifier": JSON.stringify({channel: 'AlertsChannel',id: 1}),
-            "data":JSON.stringify({message:'hello-server',action:'receive'})};
-          so.send(JSON.stringify(msg));
+         if (data.type != "welcome" && data.type != "ping" && data.type!="confirm_subscription" ) {
+          console.log(data.message);
         }
-        // console.log("************");
-        // console.log(msg);
-        // console.log("************");
       };
       so.onclose = function (ev) {};
     </script>
