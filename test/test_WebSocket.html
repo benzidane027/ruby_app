@@ -11,33 +11,23 @@
       var so = new WebSocket("ws://localhost:3000/cable");
 
       so.onopen = function (ev) {
-        const msg = {
+        var subscribing = {
           command: "subscribe",
-          identifier: JSON.stringify({ channel: "AlertsChannel", data: "hel" }),
-        };
-        so.send(JSON.stringify(msg));
-
-        //**************************
-        var s = {
-          command: "message",
-          identifier: JSON.stringify({ channel: "AlertsChannel" }),
-          data: JSON.stringify({
-            correspondent: "user01",
-            action: "receivfy",
-          }),
-        };
-        const msg2 = {
-          command: "message",
-          identifier: JSON.stringify({ channel: "AlertsChannel" }),
-          data: JSON.stringify({
-            user_id: 1,
-            message: "Hello world!",
-          }),
+          identifier: JSON.stringify({ channel: "AlertsChannel", id: 1 }),
         };
 
-        so.send(JSON.stringify(s));
+        so.send(JSON.stringify(subscribing));
       };
+
       so.onmessage = function (event) {
+        const data = JSON.parse(event.data);
+        if (data.type == "confirm_subscription") {
+          const msg = {
+            "command":"message",
+            "identifier": JSON.stringify({channel: 'AlertsChannel',id: 1}),
+            "data":JSON.stringify({message:'hello-server',action:'receive'})};
+          so.send(JSON.stringify(msg));
+        }
         // console.log("************");
         // console.log(msg);
         // console.log("************");
