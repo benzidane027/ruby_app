@@ -1,8 +1,8 @@
 class MainController < ApplicationController
   def home
-    #puts '********* this is params *************'
+    # puts '********* this is params *************'
     # comp = Complaint.find_by(id: 1)
-    #render json: { data:  url_for(comp.picture) }, status: 200
+    # render json: { data:  url_for(comp.picture) }, status: 200
 
     # comp = Complaint.new(
     #   picture: params[:picture],
@@ -22,9 +22,11 @@ class MainController < ApplicationController
 
     # puts '********* end  of params *************'
     respond_to do |format|
-      #format.xml { render(xml: "fdsfds") }
-      format.html { render(html: "<b>hello</b>".html_safe) }
-      format.json { render(json: { data: "hello" }) }
+      # format.xml { render(xml: "fdsfds") }
+      NotificationMailer.sender_mailer('benzidane27@gmail.com', 'hi hi raouf').deliver_now
+
+      format.html { render(html: '<b>hello</b>'.html_safe) }
+      format.json { render(json: { data: 'hello' }) }
     end
   end
 end
