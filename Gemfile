@@ -55,3 +55,6 @@ end
 
 # make sure to excute this command
 # sudo apt install libvips
+
+gem "sidekiq", "~> 7.1"
+gem 'dotenv-rails'

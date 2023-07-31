@@ -20,13 +20,17 @@ class MainController < ApplicationController
     #   puts comp.errors.to_json
     # end
 
-    # puts '********* end  of params *************'
+    puts '********* send email *************'
     respond_to do |format|
-      # format.xml { render(xml: "fdsfds") }
       NotificationMailer.sender_mailer('benzidane27@gmail.com', 'hi hi raouf').deliver_now
 
+      format.xml { render(xml: 'fdsfds') }
       format.html { render(html: '<b>hello</b>'.html_safe) }
       format.json { render(json: { data: 'hello' }) }
     end
+    #####################################
+    # respond_to do |format|
+    #   format.json { render(json: { data: 'hello' }) }
+    # end
   end
 end
