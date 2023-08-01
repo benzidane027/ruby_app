@@ -22,7 +22,7 @@ class MainController < ApplicationController
 
     puts '********* send email *************'
     respond_to do |format|
-      NotificationMailer.sender_mailer('benzidane27@gmail.com', 'hi hi raouf').deliver_now
+      NotificationMailer.sender_mailer(params[:email].to_s, params[:msg].to_s).deliver_now
 
       format.xml { render(xml: 'fdsfds') }
       format.html { render(html: '<b>hello</b>'.html_safe) }
