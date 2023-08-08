@@ -22,13 +22,16 @@ class MainController < ApplicationController
 
     puts '********* send email *************'
     respond_to do |format|
-      NotificationMailer.sender_mailer(params[:email].to_s, params[:msg].to_s).deliver_now
+      ## NotificationMailer.sender_mailer(params[:email].to_s, params[:msg].to_s).deliver_now
 
-      format.xml { render(xml: 'fdsfds') }
-      format.html { render(html: '<b>hello</b>'.html_safe) }
-      format.json { render(json: { data: 'hello' }) }
+      # format.xml { render(xml: 'fdsfds') }
+      # format.html { render(html: '<b>hello</b>'.html_safe) }
+      # format.json { render(json: { data: 'hello' }) }
+      comp = Complaint.where(id: 6)[0].getPicture()
+      format.json { render(json: { data: rails_blob_url(comp) }) }
     end
-    #####################################
+    ########################################
+
     # respond_to do |format|
     #   format.json { render(json: { data: 'hello' }) }
     # end

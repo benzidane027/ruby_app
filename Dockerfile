@@ -1,6 +1,8 @@
 FROM ruby:3.0.5-alpine
 
+# libpq-dev this lib for postgress  not test it yet
 RUN apk add --update --virtual \
+    libpq-dev \
     runtime-deps \
     postgresql-client \
     build-base \
@@ -20,7 +22,7 @@ RUN apk add --update --virtual \
     git \
     tzdata  \
     && rm -rf /var/cache/apk/*
-    
+
 WORKDIR /app
 COPY . /app/
 ENV BUNDLE_PATH = /gems

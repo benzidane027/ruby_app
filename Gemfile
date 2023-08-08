@@ -12,6 +12,9 @@ gem "sqlite3", "~> 1.4"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
+# Use postgresql as the database for Active Record
+gem 'pg', '~> 1.1'
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 
@@ -42,6 +45,7 @@ gem "image_processing", "~> 1.2"
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem "rack-cors"
 gem "responders"
+gem "kt-paperclip", "~> 6.4", ">= 6.4.1"
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri mingw x64_mingw]
@@ -53,8 +57,10 @@ group :development do
 
 end
 
-# make sure to excute this command
-# sudo apt install libvips
 
 gem "sidekiq", "~> 7.1"
 gem 'dotenv-rails'
+
+# make sure to excute this command
+# sudo apt install libvips
+# sudo apt install libpq-dev

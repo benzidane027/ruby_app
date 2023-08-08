@@ -29,7 +29,23 @@ class Complaint < ApplicationRecord
             size: { between: 1.kilobyte..8.megabytes, message: 'is not given between size ' },
             allow_blank: true
   def as_json(_options = {})
-    image_Url = picture.attached? ? Rails.application.routes.url_helpers.rails_blob_url(picture) : 'null'
+    image_Url = if picture.attached?
+                  {
+                    id: picture.id,
+                    type: picture.record_type,
+                    record_id: picture.record_id
+
+                  }
+                  # Rails.application.routes.url_helpers.rails_blob_url(
+                  #   picture,
+                  #   host: ENV['MAIN_URL'] + ':' + ENV['MAIN_PORT'],
+                  #   signed_id: "hello",
+                  #   only_path: true,
+                  #   disposition: "image"
+                  # )
+                else
+                  'null'
+                end
 
     Hash({
            "id": id,
@@ -43,6 +59,10 @@ class Complaint < ApplicationRecord
            "user_id": user_id,
            "picture": image_Url
          })
+  end
+
+  def getPicture
+    picture
   end
 
   # def process_attachment
@@ -72,5 +92,4 @@ class Complaint < ApplicationRecord
   #   end
   # end
   # self.picture.attach blob
-
 end

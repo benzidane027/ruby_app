@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :lname
       t.string :email
       t.string :password_digest
-      t.string :picture
+      t.string :picture  # add_attachment
       t.string :address
       t.string :phone
       t.string :is_active

@@ -78,6 +78,7 @@ GEM
     bootsnap (1.16.0)
       msgpack (~> 1.2)
     builder (3.2.4)
+    climate_control (0.2.0)
     concurrent-ruby (1.2.2)
     connection_pool (2.4.1)
     crass (1.0.6)
@@ -110,6 +111,12 @@ GEM
       rexml
     kramdown-parser-gfm (1.1.0)
       kramdown (~> 2.0)
+    kt-paperclip (6.4.2)
+      activemodel (>= 4.2.0)
+      activesupport (>= 4.2.0)
+      mime-types
+      mimemagic (~> 0.3.0)
+      terrapin (~> 0.6.0)
     loofah (2.20.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -120,6 +127,12 @@ GEM
       net-smtp
     marcel (1.0.2)
     method_source (1.0.0)
+    mime-types (3.5.0)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2023.0808)
+    mimemagic (0.3.10)
+      nokogiri (~> 1)
+      rake
     mini_magick (4.12.0)
     mini_mime (1.1.2)
     minitest (5.18.0)
@@ -139,6 +152,7 @@ GEM
     parallel (1.23.0)
     parser (3.2.2.0)
       ast (~> 2.4.1)
+    pg (1.5.3)
     puma (5.6.5)
       nio4r (~> 2.0)
     racc (1.6.2)
@@ -227,6 +241,8 @@ GEM
       tilt (~> 2.0)
       yard (~> 0.9, >= 0.9.24)
     sqlite3 (1.6.2-x86_64-linux)
+    terrapin (0.6.0)
+      climate_control (>= 0.0.3, < 1.0)
     thor (1.2.1)
     tilt (2.1.0)
     timeout (0.3.2)
@@ -252,6 +268,8 @@ DEPENDENCIES
   dotenv-rails
   image_processing (~> 1.2)
   jwt
+  kt-paperclip (~> 6.4, >= 6.4.1)
+  pg (~> 1.1)
   puma (~> 5.0)
   rack-cors
   rails (~> 7.0.4, >= 7.0.4.3)

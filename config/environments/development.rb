@@ -69,9 +69,8 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: 'smtp.gmail.com',
-    port: 587,
-    domain: 'your_domain.com',
+    address: ENV['MAIL_SERVER_HOST'],
+    port: ENV['MAIL_SERVER_PORT'],
     user_name: ENV['EMAIL'],
     password: ENV['PASSWORD'],
     authentication: :plain,
