@@ -20,20 +20,28 @@ class MainController < ApplicationController
     #   puts comp.errors.to_json
     # end
 
-    puts '********* send email *************'
-    respond_to do |format|
-      ## NotificationMailer.sender_mailer(params[:email].to_s, params[:msg].to_s).deliver_now
+    # puts '********* send email *************'
+    # respond_to do |format|
+    ## NotificationMailer.sender_mailer(params[:email].to_s, params[:msg].to_s).deliver_now
 
-      # format.xml { render(xml: 'fdsfds') }
-      # format.html { render(html: '<b>hello</b>'.html_safe) }
-      # format.json { render(json: { data: 'hello' }) }
-      comp = Complaint.where(id: 6)[0].getPicture()
-      format.json { render(json: { data: rails_blob_url(comp) }) }
-    end
+    # format.xml { render(xml: 'fdsfds') }
+    # format.html { render(html: '<b>hello</b>'.html_safe) }
+    # format.json { render(json: { data: 'hello' }) }
+    # activeStoragePic = Complaint.where(id: 6)[0].getPicture
+    # puts "\n*********************\n"
+
+    # image = MiniMagick::Image.read(activeStoragePic.blob.download)
+    # # pic = activeStoragePic.open
+    # # image.resize '300x300'
+    # puts image.mime_type
+    # puts "\n*********************\n"
+    # # format.json { render(json: { data: rails_blob_url(activeStoragePic) }) }
+    # send_data image.to_blob, type: image.mime_type, disposition: 'inline'
+    # end
     ########################################
 
-    # respond_to do |format|
-    #   format.json { render(json: { data: 'hello' }) }
-    # end
+     respond_to do |format|
+       format.json { render(json: { data: 'hello' }) }
+     end
   end
 end

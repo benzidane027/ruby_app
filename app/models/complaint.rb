@@ -29,23 +29,16 @@ class Complaint < ApplicationRecord
             size: { between: 1.kilobyte..8.megabytes, message: 'is not given between size ' },
             allow_blank: true
   def as_json(_options = {})
-    image_Url = if picture.attached?
-                  {
-                    id: picture.id,
-                    type: picture.record_type,
-                    record_id: picture.record_id
-
-                  }
-                  # Rails.application.routes.url_helpers.rails_blob_url(
-                  #   picture,
-                  #   host: ENV['MAIN_URL'] + ':' + ENV['MAIN_PORT'],
-                  #   signed_id: "hello",
-                  #   only_path: true,
-                  #   disposition: "image"
-                  # )
-                else
-                  'null'
-                end
+    has_Image = picture.attached?
+    image_Data = if has_Image
+                   {
+                     id: picture.id,
+                     type: picture.record_type,
+                     record_id: picture.record_id
+                   }
+                 else
+                   {}
+                 end
 
     Hash({
            "id": id,
@@ -57,39 +50,15 @@ class Complaint < ApplicationRecord
            "created_at": created_at,
            "updated_at": updated_at,
            "user_id": user_id,
-           "picture": image_Url
+           "has_picture": has_Image,
+           "picture": image_Data
          })
   end
 
   def getPicture
+    return unless picture.attached?
+
     picture
   end
 
-  # def process_attachment
-  #   puts "\n\n\n#####################"
-  #   pdf_attachment_path = Rails.root.to_s + "/storage/#{picture.filename}"
-  #   File.open(pdf_attachment_path, 'wb') do |file|
-  #     file.write(pdf_attachment.download)
-  #   end
-  #   puts "#####################\n\n\n"
-  # end
-  # validates :users_id, presence: true
-  # comp_type
-
-  # Attach method from ActiveStorage
-  # def attach(file) # method  attaching in the model
-  #   blob_key = "testing/filename-#{Time.now}.jpej"
-  #   blob = ActiveStorage::Blob.find_by(key: blob_key.to_s)
-  #   return if blob
-
-  #   blob = ActiveStorage::Blob.new.tap do |blob|
-  #     blob.filename = blob_key.to_s
-  #     blob.key = blob_key
-  #     # blob.byte_size = 123123
-  #     # blob.checksum = Time.new.strftime("%Y%m%d-") + Faker::Alphanumeric.alpha(6)
-  #     blob.upload File.open(file)
-  #     blob.save!
-  #   end
-  # end
-  # self.picture.attach blob
 end

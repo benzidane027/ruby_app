@@ -46,6 +46,9 @@ gem "image_processing", "~> 1.2"
 # gem "rack-cors"
 gem "responders"
 gem "kt-paperclip", "~> 6.4", ">= 6.4.1"
+
+gem 'mini_magick'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri mingw x64_mingw]
@@ -64,3 +67,6 @@ gem 'dotenv-rails'
 # make sure to excute this command
 # sudo apt install libvips
 # sudo apt install libpq-dev
+# sudo apt-get install libmagickwand-dev
+# sudo apt-get install imagemagick
+
