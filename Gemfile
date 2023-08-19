@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.0.5"
+ruby "3.2.2"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4", ">= 7.0.4.3"
@@ -65,8 +65,16 @@ gem "sidekiq", "~> 7.1"
 gem 'dotenv-rails'
 
 # make sure to excute this command
+##################################
+
+#   for ubuntu
+
 # sudo apt install libvips
 # sudo apt install libpq-dev
 # sudo apt-get install libmagickwand-dev
 # sudo apt-get install imagemagick
 
+#   for fedora 
+# sudo dnf install libpq-devel
+# sudo dnf install vips-devel
+# sudo dnf install mageMagick-devel

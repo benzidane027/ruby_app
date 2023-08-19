@@ -13,5 +13,5 @@ services:
       - "./db:/app/db"
       - "./app:/app/app"
       - "./config:/app/config"
-      - ".env":/".env"
+      - ".env:/app/.env"
     
