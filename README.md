@@ -5,4 +5,8 @@ application up and running.
 
 Things you may want to cover:
 
-* sudo dnf install ruby-devel
+* sudo dnf install ruby-devel      //to build gem app
+* bundle install                   //install the packages
+* rails db:migrate                 //make migration
+* rails s                          //to run server app
+* 
