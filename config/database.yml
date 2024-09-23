@@ -6,20 +6,20 @@
 #
 default: &default
   ###  for postgress  ###
-  # adapter: postgresql
-  # host: "10.0.3.10"
-  # port: 5432
-  # encoding: unicode
-  # database: rails_db
-  # pool: 5
-  # username: admin
-  # password: admin
+  adapter: postgresql
+  host: "20.0.0.20"
+  port: 5432
+  encoding: unicode
+  database: development
+  pool: 5
+  username: root
+  password: root
 
   ###  for sqlite  ###
-  adapter: sqlite3
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  database: db/development.sqlite3
-  timeout: 5000
+  # adapter: sqlite3
+  # pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  # database: db/development.sqlite3
+  # timeout: 5000
 
 development:
   <<: *default

@@ -1,17 +1,53 @@
-version: "3"
+version: "3.8"
+networks:
+  app_net:
+    ipam:
+      config:
+        - subnet: 20.0.0.0/24
 services:
   # redis:
   #   image: redis:latest
   #   ports:
   #     - "6379:6379"
+  db:
+    image: postgres:15
+    restart: always
+    container_name: postgres_db
+    volumes:
+      - ./postgress:/var/lib/postgresql/data:rw
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=development
+      - PGDATA=/var/lib/postgresql/data/
+    networks:
+      app_net:
+        ipv4_address: 20.0.0.20
   api:
     container_name: myrails
     build: .
     ports:
       - "3000:3000"
+    depends_on:
+      - db
     volumes:
       - "./db:/app/db"
       - "./app:/app/app"
       - "./config:/app/config"
       - ".env:/app/.env"
+    command: bash -c "bundle exec rake db:migrate && bin/rails s -b 0.0.0.0"
+
+    networks:
+      app_net:
+        ipv4_address: 20.0.0.10
+
+
+volumes:
+  db:
+  app:
+  config:
+  postgress:
+
     

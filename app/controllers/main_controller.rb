@@ -42,6 +42,7 @@ class MainController < ApplicationController
 
      respond_to do |format|
        format.json { render(json: { data: 'hello' }) }
+       format.html { render(html: '<b>hello</b>'.html_safe) }
      end
   end
 end
