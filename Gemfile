@@ -63,6 +63,7 @@ end
 
 gem "sidekiq", "~> 7.1"
 gem 'dotenv-rails'
+gem 'aws-sdk-s3'
 
 # make sure to excute this command
 ##################################

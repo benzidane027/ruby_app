@@ -15,7 +15,7 @@ sqlite: &sqlite
   timeout: 5000
 
 development:
-  <<: *sqlite
+  <<: *postgres
 
 test:
   <<: *sqlite

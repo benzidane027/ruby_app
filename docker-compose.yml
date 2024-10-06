@@ -10,7 +10,7 @@ services:
     restart: always
     container_name: postgres_db
     volumes:
-      - ./postgress:/var/lib/postgresql/data:rw
+      - ./ActiveRecord:/var/lib/postgresql/data:rw
     ports:
       - "5432:5432"
     environment:
@@ -38,6 +38,9 @@ services:
       db: 
         condition: service_healthy
         restart: true
+      minio: 
+        condition: service_healthy
+        restart: true
     volumes:
       - "./db:/app/db"
       - "./app:/app/app"
@@ -48,12 +51,33 @@ services:
     networks:
       app_net:
         ipv4_address: 20.0.0.10
-
+  minio:
+    image: minio/minio:latest
+    container_name: minio_ruby
+    ports:
+      - "9000:9000"  # MinIO API port
+      - "9001:9001"  # MinIO console port (web interface)
+    volumes:
+      - ./ActiveStorage:/data    # Persistent storage for MinIO
+    command: server /data --console-address ':9001'
+    environment:
+      - MINIO_ROOT_USER=${MINIO_ROOT_USER}
+      - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      app_net:
+        ipv4_address: 20.0.0.30
+    
 
 volumes:
   db:
   app:
   config:
-  postgress:
+  ActiveRecord:
+  ActiveStorage:
 
     
