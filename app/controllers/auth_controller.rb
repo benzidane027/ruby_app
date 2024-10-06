@@ -24,8 +24,13 @@ class AuthController < ApplicationController
       password: params[:password].to_s,
       password_confirmation: params[:password].to_s,
       phone: params[:phone].to_s,
-      address: params[:address].to_s
+      address: params[:address].to_s,
+      picture: params[:picture]
     )
+    print "##############11################\n"
+    print params[:picture]
+    print "##############22################\n"
+
     if user.validate
       user.save
       render json: { data: :good }, status: 201
