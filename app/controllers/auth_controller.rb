@@ -33,9 +33,9 @@ class AuthController < ApplicationController
 
     if user.validate
       user.save
-      render json: { data: :good }, status: 201
+      render json: { data: "" }, status: 201
     else
-      render json: { data: :bad, errors: user.errors }, status: 400
+      render json: { data: "", errors: user.errors }, status: 400
     end
   end
 

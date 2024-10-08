@@ -4,5 +4,5 @@ COPY . /app/
 ENV BUNDLE_PATH = /gems
 RUN gem install bundler:2.4.12
 RUN bundle install
-RUN RUN apt-get update && apt install libvips -y
+RUN RUN apt-get update -qq && apt install libvips -y
 
