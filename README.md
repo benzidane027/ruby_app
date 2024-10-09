@@ -14,7 +14,9 @@ Things you may want to cover:
 
 
 Ruby instalation:
- * rvm reinstall ruby-3.0.5 --with-openssl-dir=/usr/bin/openssl
+
+ *  rvm pkg install openssl
+ *  rvm reinstall ruby-3.1.2 --with-openssl-dir=~/Desktop/.rvm/usr/bin/openssl
  *  rvm fix-permissions system; rvm fix-permissions user
  *  sudo chmod -R a+xwr /usr/share/gems/
  *  sudo chmod -R a+xwr /usr/share/rvm

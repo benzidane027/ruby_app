@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.0.5"
+ruby "3.1.2"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4", ">= 7.0.4.3"
@@ -36,8 +36,7 @@ gem "bootsnap", require: false
 gem "jwt"
 gem "rack-cors", :require => "rack/cors"
 gem "shoulda-matchers", require: false
-gem "solargraph", group: :development
-gem "rufo", group: :development
+
 gem "validates_email_format_of"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
@@ -52,13 +51,12 @@ gem 'mini_magick'
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri mingw x64_mingw]
+  gem "solargraph"
+  gem "rufo"
+  gem 'activeadmin'
+  gem 'devise'
 end
 
-group :development do
-  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
-
-end
 
 
 gem "sidekiq", "~> 7.1"
