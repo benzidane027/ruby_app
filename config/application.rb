@@ -1,12 +1,13 @@
-require_relative 'boot'
+require_relative "boot"
+require "sprockets/railtie"
+require "rails/all"
 
-require 'rails/all'
-
-require_relative '../app/midleware/auth_midleware'
+require_relative "../app/midleware/auth_midleware"
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 Dotenv::Railtie.load
+
 module TestApi
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.

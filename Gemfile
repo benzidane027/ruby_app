@@ -56,6 +56,7 @@ group :development, :test do
   gem 'jaro_winkler', '~> 1.6.0'
   gem 'rufo'
   gem 'solargraph', '~> 0.50.0'
+  gem 'sprockets-rails'
 end
 
 gem 'aws-sdk-s3'
