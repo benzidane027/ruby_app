@@ -56,13 +56,15 @@ group :development, :test do
   gem 'rufo'
   gem 'solargraph', '~> 0.50.0'
 
-  ### active admin ###
+  ### active admin #####
   gem 'activeadmin'
   gem 'cancancan'
   gem 'devise'
   gem 'draper'
   gem 'pundit'
+  gem 'sass-rails'
   gem 'sprockets-rails'
+  #########################
 end
 
 gem 'aws-sdk-s3'
