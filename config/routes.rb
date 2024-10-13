@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   ##### user endpoint ###########################
 
   post '/user/login' => 'auth#log_in'
