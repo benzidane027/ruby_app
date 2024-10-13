@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base #ActionController::API
   # for multiple response
   include ActionController::MimeResponds
+  protect_from_forgery with: :null_session
 
   REFRESH_EXP = 3600 * 24 * 5 # six hours
   ACCESS_EXP = 3600 * 24 # one hours
