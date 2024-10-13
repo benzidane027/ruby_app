@@ -50,12 +50,18 @@ gem 'mini_magick'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem 'activeadmin'
+
   gem 'debug', platforms: %i[mri mingw x64_mingw]
-  gem 'devise'
   gem 'jaro_winkler', '~> 1.6.0'
   gem 'rufo'
   gem 'solargraph', '~> 0.50.0'
+
+  ### active admin ###
+  gem 'activeadmin'
+  gem 'cancancan'
+  gem 'devise'
+  gem 'draper'
+  gem 'pundit'
   gem 'sprockets-rails'
 end
 
