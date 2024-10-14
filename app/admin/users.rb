@@ -18,11 +18,13 @@ ActiveAdmin.register User do
 
   form do |f|
     f.inputs do
+      f.input :fname
+      f.input :lname
       f.input :email
       f.input :password
       f.input :password_confirmation
+      f.input :picture, as: :file
     end
     f.actions
   end
-
 end
